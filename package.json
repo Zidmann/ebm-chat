@@ -1,0 +1,14 @@
+{
+  "author"         : "Emmanuel ZIDEL-CAUFFET et Edgar HIPP",
+  "name"           : "EBMChat",
+  "version"        : "0.0.1",
+  "engines"        : {
+    "node": ">0.10.0"
+  },
+  "scripts"        : {
+    "start"  : "cd ./bin; ./server",
+    "install": "cd server; npm i",
+    "test" : "NODE_ENV=test mocha test"
+  }
+}
+
