@@ -5,7 +5,7 @@ var debug = require('debug')('EBMChatServer');
 var express = require('express');
 var lessMiddleware = require('less-middleware');
 var _ = require('underscore');
-//var cas = require('grand_master_cas');
+var cas = require('./grand_master_cas/index.js');
 var conf = require('./conf.js');
 
 // Global var containing database connections pool
