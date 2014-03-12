@@ -1,7 +1,7 @@
 module.exports = {
   http   : {
     host: '0.0.0.0',
-    port: 80
+    port: 8080
   },
   mongo  : 'mongodb://127.0.0.1:27017/EBMChatServer',
   rootUrl: 'http://www.monsite.fr',
