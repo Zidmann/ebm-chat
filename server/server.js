@@ -32,10 +32,12 @@ var ctrl = _.extend({},
   require('./controllers/user.js'),
   require('./controllers/login.js'),
   require('./controllers/file.js'),
-  require('./controllers/room.js'),
-  require('./controllers/msg.js')
+  require('./controllers/room.js')
 );
 
+
+// Load cas
+cas.configure(conf.cas);
 
 function setup() 
 {
@@ -113,7 +115,7 @@ function setup()
       });
     });
 
-
+    require('./routes/routes.js').register(app,ctrl);
 
     return app;
 }
@@ -124,6 +126,11 @@ function start(port, host, callback)
     var app = setup();
     // start server
     server = http.createServer(app);
+
+app.get('/', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Vous êtes à l\'accueil');
+});
 
     server.listen(port ? port : conf.http.port, host ? host : conf.http.host, function(err) 
     {
