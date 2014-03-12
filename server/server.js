@@ -80,6 +80,7 @@ function setup()
 
 
 
+
     // Setting up database connections pool
     app.use(function(req, res, next) {
         if (db == null) return next(new Err(500, 1006, "Impossible de se connecter à la base de données"));
