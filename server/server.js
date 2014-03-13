@@ -23,7 +23,6 @@ require('mongodb').MongoClient.connect(conf.mongo, function(err, myDb) {
 });
 
 
-
 // var
 var server = null;
 
@@ -57,7 +56,7 @@ function setup()
     }
     next();
   });
-
+/*
   // launcher
   app.use(function(req, res, next) {
     if(req.url !== '/')
@@ -69,7 +68,7 @@ function setup()
       res.send(text);
     });
   });
-
+*/
   // static files
   app.use('/', express.static(path.join(__dirname, '..', 'front', 'dist')));
 
@@ -80,29 +79,20 @@ function setup()
   app.use(express.cookieParser());
   app.use(express.session({secret: "Ju0XYxPeYEIS=@.gh{Z:eUFjG"}));
 
-
-
-
     // Setting up database connections pool
     app.use(function(req, res, next) {
         if (db == null) return next(new Err(500, 1006, "Impossible de se connecter à la base de données"));
         else next();
     });
 
-  /*
-   * BEGIN APIs
-   */
-  // Public APIs
+   // BEGIN APIs
+    require('./routes/routes.js').register(app,ctrl);
 
-  // Private APIs (for logged-in users)
 
   // if no matching api
   app.use('/api', function(req, res, next) {
     next(new Err(404, 1004, "L'api n'existe pas"));
   });
-  /*
-   * END APIs
-   */
 
     // error handler
     app.use(function(err, req, res, next) {
@@ -115,8 +105,6 @@ function setup()
       });
     });
 
-    require('./routes/routes.js').register(app,ctrl);
-
     return app;
 }
 
@@ -124,13 +112,9 @@ function start(port, host, callback)
 {
     // init app
     var app = setup();
+
     // start server
     server = http.createServer(app);
-
-app.get('/', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Vous êtes à l\'accueil');
-});
 
     server.listen(port ? port : conf.http.port, host ? host : conf.http.host, function(err) 
     {
@@ -145,6 +129,7 @@ app.get('/', function(req, res) {
         }
 
     });
+
 }
 
 function stop(callback) 
