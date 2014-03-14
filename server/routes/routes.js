@@ -1,34 +1,32 @@
 var register=function (app,ctrl)
 {
-        app.get('/', function(req, res) {
-             res.setHeader('Content-Type', 'text/plain');
-             res.end('Vous êtes à l\'accueil, que puis-je pour vous ?');
-        });
 
-        app.get   ("/users", ctrl.user.get);
-        app.post  ("/users", ctrl.user.get);
-        app.put   ("/users", ctrl.user.get);
-        app.delete("/users", ctrl.user.get);
+/* *
+   * START API DEFINITION
+   */
+//  Public APIs
+    app.get   ("/api/login",       ctrl.user.get);		//Get current user information
+    app.post  ("/api/login/:door", ctrl.login.signin);		//Connect to chat server website through a door (Classical, Gmail, Facebook, CAS, ...)
+    app.delete("/api/login",       ctrl.login.signout);		//Disconnect from chat server website
 
-        app.get   ("/users/:id", ctrl.user.get);
-        app.post  ("/users/:id", ctrl.user.get);
-        app.put   ("/users/:id", ctrl.user.get);
-        app.delete("/users/:id", ctrl.user.get);
+// Private APIs (for classic client)
+    app.put   ("/api/login",       ctrl.user.update);   	//Update user account parameters
 
-        app.get   ("/login/:door", ctrl.user.get);
-        app.delete("/login",       ctrl.user.get);
+    app.get   ("/api/users",       ctrl.user.getConnected);   	//Get connected user information list
+    app.get   ("/api/users/:id",   ctrl.user.get);		//Get information on a specific user
 
-        app.get   ("/rooms", ctrl.user.get);
-        app.post  ("/rooms", ctrl.user.get);
+    app.get   ("/api/rooms",     ctrl.room.get);		//Get room list on the chat
+    app.post  ("/api/rooms",     ctrl.room.create);		//Create a new room on the chat
+    app.get   ("/api/rooms/:id", ctrl.room.getMsg);		//Get information and messages on a specific room
+    app.put   ("/api/rooms/:id", ctrl.room.postMsg);		//Write a message in a specifi room
+    app.delete("/api/rooms/:id", ctrl.room.destroy);		//Destroy a specific room
 
-        app.get   ("/rooms/:id", ctrl.user.get);
-        app.put   ("/rooms/:id", ctrl.user.get);
-        app.delete("/rooms/:id", ctrl.user.get);
+    app.get   ("/api/files/:id", ctrl.file.download);		//Download from server to user a specific file
+    app.post  ("/api/files/",    ctrl.file.upload);		//Upload from user to server a file
+    app.put   ("/api/files/:id", ctrl.file.update);		//Update a file on the server
+    app.delete("/api/files/:id", ctrl.file.destroy);		//Delete a specific file
 
-        app.get   ("/file/:id", ctrl.user.get);
-        app.post  ("/file/:id", ctrl.user.get);
-        app.put   ("/file/:id", ctrl.user.get);
-        app.delete("/file/:id", ctrl.user.get);
+// Admin APIs
 
 }
 

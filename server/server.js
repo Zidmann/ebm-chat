@@ -44,6 +44,7 @@ function setup()
 
   // logs all requests
   app.use(express.logger());
+
   app.use(express["static"](__dirname + '/public'));
 
   // change allow origin
