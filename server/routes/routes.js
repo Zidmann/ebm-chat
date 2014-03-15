@@ -1,10 +1,12 @@
-var register=function (app,ctrl)
+var register=function (app,ctrl,cas)
 {
 
 /* *
    * START API DEFINITION
    */
 //  Public APIs
+    app.get   ('/api/cas',         cas.bouncer, ctrl.login.cas);	//Connect with ECLille CAS system
+
     app.get   ("/api/login",       ctrl.user.get);		//Get current user information
     app.post  ("/api/login/:door", ctrl.login.signin);		//Connect to chat server website through a door (Classical, Gmail, Facebook, CAS, ...)
     app.delete("/api/login",       ctrl.login.signout);		//Disconnect from chat server website

@@ -1,7 +1,8 @@
 {
-  "author": "Emmanuel ZIDEL-CAUFFET et Edgar HIPP",
+  "author": "Emmanuel ZIDEL-CAUFFET and Edgar HIPP",
   "name": "EBMChat",
   "version": "0.0.1",
+  "description"; "REST Chat Server designed for Android Course in Ecole Centrale de Lille",
   "engines": {
     "node": ">0.10.0"
   },

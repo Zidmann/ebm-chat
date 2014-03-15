@@ -1,12 +1,13 @@
-var http = require('http');
-var path = require('path');
-var fs = require('fs');
-var debug = require('debug')('EBMChatServer');
-var express = require('express');
+var http           = require('http');
+var path           = require('path');
+var fs             = require('fs');
+var debug          = require('debug')('EBMChatServer');
+var express        = require('express');
 var lessMiddleware = require('less-middleware');
-var _ = require('underscore');
-var cas = require('./grand_master_cas/index.js');
-var conf = require('./conf.js');
+var _              = require('underscore');
+var Err            = require('./utils/err.js');
+var cas            = require('./grand_master_cas/index.js');
+var conf           = require('./conf.js');
 
 // Global var containing database connections pool
 db = null;
@@ -34,7 +35,6 @@ var ctrl = _.extend({},
   require('./controllers/room.js')
 );
 
-
 // Load cas
 cas.configure(conf.cas);
 
@@ -45,7 +45,14 @@ function setup()
   // logs all requests
   app.use(express.logger());
 
+  // indicate /public contains static files
   app.use(express["static"](__dirname + '/public'));
+
+  // static files
+  app.use('/', express.static(path.join(__dirname, '..', 'front', 'dist')));
+
+  // activate favicon
+  app.use(express.favicon(__dirname + '/public/favicon.ico')) 
 
   // change allow origin
   app.use('/api', function (req, res, next) {
@@ -58,7 +65,7 @@ function setup()
     }
     next();
   });
-/*
+
   // launcher
   app.use(function(req, res, next) {
     if(req.url !== '/')
@@ -70,16 +77,15 @@ function setup()
       res.send(text);
     });
   });
-*/
-  // static files
-  app.use('/', express.static(path.join(__dirname, '..', 'front', 'dist')));
-
+ 
  // access to POST data
   app.use(express.bodyParser());
 
-  // session support
+  // cookie support
   app.use(express.cookieParser());
-  app.use(express.session({secret: "Ju0XYxPeYEIS=@.gh{Z:eUFjG"}));
+
+  // session support
+  app.use(express.session({secret: "J6kd8?YDéDB85éyèvip&"}));
 
     // Setting up database connections pool
     app.use(function(req, res, next) {
@@ -88,7 +94,7 @@ function setup()
     });
 
    // BEGIN APIs
-    require('./routes/routes.js').register(app,ctrl);
+    require('./routes/routes.js').register(app,ctrl,cas);
 
 
   // if no matching api
