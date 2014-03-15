@@ -1,12 +1,13 @@
 #!/bin/bash
 
-############################################################################################
-# Script to start Node server for REST EBM Chat Server                                     #
-# Auteur      : Zidmann (zidmann@gmail.com)                                                #
-# Date        : 14/03/2014                                                                 #
-# Version     : 0.0.1                                                                      #
-# Note        : The server can not be started with root right by security                  #
-############################################################################################
+########################################################################################################
+# Script to start Node server for REST EBM Chat Server                                                 #
+# Auteur      : Zidmann (zidmann@gmail.com)                                                            #
+# Date        : 14/03/2014                                                                             #
+# Version     : 0.0.1                                                                                  #
+# Note        : The server can not be started with root right by security                              #
+#               nodemon is used instead of nodejs to automatickly update server when files are changed #
+########################################################################################################
 
 ROOT_UID=0					# Root Id
 
