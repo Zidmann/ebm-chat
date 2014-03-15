@@ -23,9 +23,7 @@ var register=function (app,ctrl,cas)
     app.put   ("/api/rooms/:id", ctrl.room.postMsg);		//Write a message in a specifi room
     app.delete("/api/rooms/:id", ctrl.room.destroy);		//Destroy a specific room
 
-    app.get   ("/api/files/:id", ctrl.file.download);		//Download from server to user a specific file
     app.post  ("/api/files/",    ctrl.file.upload);		//Upload from user to server a file
-    app.put   ("/api/files/:id", ctrl.file.update);		//Update a file on the server
     app.delete("/api/files/:id", ctrl.file.destroy);		//Delete a specific file
 
 // Admin APIs

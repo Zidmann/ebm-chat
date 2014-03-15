@@ -6,7 +6,7 @@ var express        = require('express');
 var lessMiddleware = require('less-middleware');
 var _              = require('underscore');
 var Err            = require('./utils/err.js');
-var cas            = require('./grand_master_cas/index.js');
+var cas            = require('./lib/grand_master_cas/index.js');
 var conf           = require('./conf.js');
 
 // Global var containing database connections pool
