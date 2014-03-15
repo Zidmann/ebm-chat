@@ -32,6 +32,7 @@ var ctrl = _.extend({},
   require('./controllers/user.js'),
   require('./controllers/login.js'),
   require('./controllers/file.js'),
+  require('./controllers/system.js'),
   require('./controllers/room.js')
 );
 
