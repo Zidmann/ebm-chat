@@ -1,28 +1,21 @@
 function signup(req, res, next) {
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Function UserInfos');
+    res.end('Function signup');
 }
 
 function getUserInfos(req, res, next) {
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Function UserInfos');
+    res.end('Function getUserInfos');
 }
 
-function updateUserInfos(req, res, next) {
+function deleteUser(req, res, next) {
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Function UserInfos');
+    res.end('Function deleteUser');
 }
-
-function getConnectedInfos(req, res, next) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Function UserInfos');
-}
-
 
 
 module.exports.user = {
         signup          :       signup,
 	get		: 	getUserInfos,
-	getConnected	:	getConnectedInfos,
-	update		:	updateUserInfos
+        destroy 	: 	deleteUser
 };
