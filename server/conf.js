@@ -4,7 +4,6 @@ module.exports = {
       host: 'localhost',
       port: 8080
     },
-    mongo  : 'mongodb://localhost:27017/EBMChatServer',
     rootUrl: 'http://www.monsite.fr',
     cas    : 
     {
@@ -19,5 +18,10 @@ module.exports = {
         redirectUrl  : 'http://www.monsite.fr',                // the route that cas.blocker will send to if not authed. Defaults to '/'
         connectedURL : 'http://www.monsite.fr/#/home',
         createUserUrl: 'http://www.monsite.fr/#/user/create'
+    },
+    mongo  : 'mongodb://localhost:27017/ebmChat',
+    database :
+    {
+
     }
 } 
