@@ -5,6 +5,7 @@ module.exports = {
       port: 8080
     },
     rootUrl: 'http://www.monsite.fr',
+    //TODO : Adapt configuration for our website
     cas    : 
     {
         casHost      : "cas.ec-lille.fr",                      // required
@@ -22,6 +23,9 @@ module.exports = {
     mongo  : 'mongodb://localhost:27017/ebmChat',
     database :
     {
-
+        name           : "ebmChat",
+        userCollection : "users",
+        roomCollection : "rooms",
+        mssgCollection : "rooms.messages"
     }
 } 
