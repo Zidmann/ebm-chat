@@ -1,7 +1,6 @@
 var http           = require('http');
 var path           = require('path');
 var fs             = require('fs');
-var debug          = require('debug')('EBMChatServer');
 var express        = require('express');
 var lessMiddleware = require('less-middleware');
 var _              = require('underscore');
@@ -72,7 +71,7 @@ function setup()
       return next();
     fs.readFile(path.join(__dirname, '..', 'front', 'dist', 'index_cached.html'), 'utf8', function(err, text) {
       if(err) {
-        return debug(err);
+
       }
       res.send(text);
     });
@@ -128,7 +127,7 @@ function start(port, host, callback)
     {
         if(err) 
         {
-            return debug(err);
+
         }
         console.log('Starting server on ' + server.address().address + ':' + server.address().port);
         if(callback) 
