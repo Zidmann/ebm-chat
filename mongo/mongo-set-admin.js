@@ -9,7 +9,7 @@
 /* Test values for MongoDB
  * Run $mongo cia mongo-admin.js 
  */
-var u = db.Users;
+var u = db.users;
 
 // Yay admins !
 u.update({},                                        {$set : { 'isAdmin' : false}}, false, true);
