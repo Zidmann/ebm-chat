@@ -94,19 +94,19 @@ r.insert([{
 // Sample data for Messages for EBM Student Room
 rm.insert([{
 		room    : r.find({libelle : 'EBM Student Room'}, {_id : 1}).next()._id,
-	        msg     : "Bonjour quelqu'un est là ?",
+	        txt     : "Bonjour quelqu'un est là ?",
 		creator : u.find({login : 'ezidel-c'}, {_id : 1}).next()._id,
 		created : new Date()
         },
         {
 		room    : r.find({libelle : 'EBM Student Room'}, {_id : 1}).next()._id,
-	        msg     : "Oui, moi.",
+	        txt     : "Oui, moi.",
 		creator : u.find({login : 'ehipp'}, {_id : 1}).next()._id,
 		created : new Date()
         },
         {
 		room    : r.find({libelle : 'EBM Student Room'}, {_id : 1}).next()._id,
-        	msg     : "Salut Edgar. Ca baigne, comment tu trouves notre nouveau chat made in EBM",
+        	txt     : "Salut Edgar. Ca baigne, comment tu trouves notre nouveau chat made in EBM",
 		creator : u.find({login : 'ezidel-c'}, {_id : 1}).next()._id,
 		created : new Date()
         }]);
@@ -116,20 +116,20 @@ rm.insert([{
 // Sample data for Messages for Teacher Room
 rm.insert([{
 		room    : r.find({libelle : 'Teacher Room'}, {_id : 1}).next()._id,
-	        msg     : "Bonjour. Qui est là ?",
+	        txt     : "Bonjour. Qui est là ?",
 		creator : u.find({login : 'tbourdea'}, {_id : 1}).next()._id,
 		created : new Date()
         },
 	{
 		room    : r.find({libelle : 'Teacher Room'}, {_id : 1}).next()._id,
-	        msg     : "Bonjour Thomas. Je vois que tes étudiants s'amusent maintenant à inventer de nouvelles méthodes pour parler entres eux et pas suivre en cours !!!",
+	        txt     : "Bonjour Thomas. Je vois que tes étudiants s'amusent maintenant à inventer de nouvelles méthodes pour parler entres eux et pas suivre en cours !!!",
 		creator : u.find({login : 'tbourdea'}, {_id : 1}).next()._id,
                 file    : "",
 		created : new Date()
         },
 	{
 		room    : r.find({libelle : 'Teacher Room'}, {_id : 1}).next()._id,
-	        msg     : "A ça, non c'est moi qui leur ait demandé pour leurs donner une note aux TPs Android.",
+	        txt     : "A ça, non c'est moi qui leur ait demandé pour leurs donner une note aux TPs Android.",
 		creator : u.find({login : 'tbourdea'}, {_id : 1}).next()._id,
 		created : new Date()
         }]);
