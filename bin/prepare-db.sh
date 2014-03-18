@@ -17,6 +17,5 @@ if [ $UID == $ROOT_UID ]; then
 	exit 0
 fi
 
-mongo $DB_NAME ../mongo/mongo-insert-data.js
-mongo $DB_NAME ../mongo/mongo-set-admin.js
+mongo $DB_NAME ../mongo/mongo-insert-data.js ../mongo/mongo-set-admin.js
 
