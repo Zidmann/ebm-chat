@@ -10,7 +10,7 @@ function Msg(id, callback, obj) {
 	
 	this.id      = id;
 	this.room    = null;
-	this.msg     = null;
+	this.txt     = null;
 	this.file    = null;
 	this.creator = null;
 	this.created = new Date();
@@ -30,13 +30,24 @@ function Msg(id, callback, obj) {
 
 Msg.prototype = new ObjectDB(conf.database.name, conf.database.msgsCollection);
 
-Msg.getFromDb = function(callback) {
+Msg.getFromDb = function(room_id, callback) {
 	var t = null;
-	db.collection(conf.database.msgsCollection).find({}).toArray(function(err, t) {
-		async.map(t, function(e, done) {
-			new Msg(e._id, done, e);
-		}, callback);
-	});
+	if(room_id == null)
+	{
+		db.collection(conf.database.msgsCollection).find({}).toArray(function(err, t) {
+			async.map(t, function(e, done) {
+				new Msg(e._id, done, e);
+			}, callback);
+		});
+	}
+	else
+	{
+		db.collection(conf.database.msgsCollection).find({room : u.ObjectID(room_id)}).toArray(function(err, t) {
+			async.map(t, function(e, done) {
+				new Msg(e._id, done, e);
+			}, callback);
+		});
+	}
 }
 
 Msg.prototype.toString = function() {
@@ -45,7 +56,7 @@ Msg.prototype.toString = function() {
 
 Msg.prototype.fromObj = function(obj) {
 	this.room    = obj.room;
-	this.msg     = obj.msg;
+	this.txt     = obj.txt;
 	this.file    = obj.file;
 	this.creator = obj.creator;
 	this.created = obj.created;
@@ -55,7 +66,7 @@ Msg.prototype.fromObj = function(obj) {
 Msg.prototype.obj = function(id) {
 	var o = {
 		room       : this.room,
-		msg        : this.msg, 
+		txt        : this.txt, 
 		file       : this.file,
 		creator    : this.creator,
 		created    : this.created,
