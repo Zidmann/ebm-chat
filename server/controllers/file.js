@@ -2,7 +2,7 @@ var Uploader = require('../lib/express-uploader/express-uploader');
 
 function uploadFile(req, res, next) {
     var uploader = new Uploader({
-        debug         : true,
+        debug         : false,
         validate      : true,
         thumbnails    : true,
         thumbToSubDir : true,
@@ -19,7 +19,7 @@ function uploadFile(req, res, next) {
 
 function destroyFile(req, res, next) {
     var uploader = new Uploader({
-        debug         : true,
+        debug         : false,
         validate      : true,
         thumbnails    : true,
         thumbToSubDir : true,
