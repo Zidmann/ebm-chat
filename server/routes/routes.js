@@ -20,7 +20,7 @@ var register=function (app, ctrl, cas)
     //Messages APIs
     app.get   ("/api/rooms/:room/msg",     ctrl.msg.getAll);		//Get information on a specific room
     app.get   ("/api/rooms/:room/msg/:id", ctrl.msg.getOne);		//Get information on a specific room
-    app.post  ("/api/rooms/:room/msg/",    ctrl.msg.post);		//Create a new room on the chat
+    app.post  ("/api/rooms/:room/msg",     ctrl.msg.post);		//Create a new room on the chat
     app.delete("/api/rooms/:room/msg/:id", ctrl.msg.destroy);		//Destroy a specific room
 
     //File APIs
