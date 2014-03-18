@@ -5,9 +5,7 @@ var u        = require('../utils/utils.js'),
     async    = require('async'),
     conf     = require('../conf.js');
 
-
 function Room(id, callback, obj) {
-	// Room properties
 	id = (typeof id === 'string' && id.length == 24) ? u.ObjectID(id) : id;
 	
 	this.id          = id;
@@ -41,11 +39,10 @@ Room.getFromDb = function(callback) {
 }
 
 Room.prototype.toString = function() {
-	return this.login;
+	return this.libelle;
 };
 
 Room.prototype.fromObj = function(obj) {
-	this.id          = obj.id;
 	this.libelle     = obj.libelle;
 	this.owner       = obj.owner;
 	this.description = obj.description;
