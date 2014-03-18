@@ -34,14 +34,6 @@ function getAll(req, res, next) {
 
 //CREATE ROOM FUNCTION
 function createRoom(req, res, next) {
-	Room.getFromDb(function(err, t) {
-		if (err) return next(err);
-		var t = _.map(t, function(room) {
-			return room;
-		});
-		res.json(200,t);
-	});
-
 	var room = new Room();
 
 	if (req.body.libelle == null || req.body.owner == null)
@@ -49,16 +41,12 @@ function createRoom(req, res, next) {
 		return next(new Err(400, 1301, "Les paramètres envoyés ne sont pas complets"));
 	}	
 
-	room.id          = req.body.id;
 	room.libelle     = req.body.libelle;
 	room.owner       = req.body.owner;
 	room.description = req.body.description;
-	room.created     = req.body.created;
-	room.updated     = req.body.updated;
 	
 	room.check(null, function(err, b) {
 		if (err) return next(err);
-		
 		if (b) {
 			room.save(function(err) {
 				if (err) return next(err);
@@ -66,7 +54,7 @@ function createRoom(req, res, next) {
 				room.check(null, function(err, b) {
 					if (err) return next(err);
 					if (b) return next(new Err(400, 1303, "Erreur lors de la création du salon"));
-					res.json(200, _);
+					res.json(200, room.obj(true));//user.obj(true));
 				});
 			});
 		}
