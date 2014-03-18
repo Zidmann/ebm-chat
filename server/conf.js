@@ -26,6 +26,6 @@ module.exports = {
         name           : "ebmChat",
         userCollection : "users",
         roomCollection : "rooms",
-        mssgCollection : "rooms.messages"
+        msgsCollection : "rooms.messages"
     }
 } 
