@@ -31,7 +31,8 @@ var ctrl = _.extend({},
   require('./controllers/user.js'),
   require('./controllers/login.js'),
   require('./controllers/file.js'),
-  require('./controllers/room.js')
+  require('./controllers/room.js'),
+  require('./controllers/msg.js')
 );
 
 // Load cas
