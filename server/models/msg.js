@@ -32,22 +32,11 @@ Msg.prototype = new ObjectDB(conf.database.name, conf.database.msgsCollection);
 
 Msg.getFromDb = function(room_id, callback) {
 	var t = null;
-	if(room_id == null)
-	{
-		db.collection(conf.database.msgsCollection).find({}).toArray(function(err, t) {
-			async.map(t, function(e, done) {
-				new Msg(e._id, done, e);
-			}, callback);
-		});
-	}
-	else
-	{
-		db.collection(conf.database.msgsCollection).find({room : u.ObjectID(room_id)}).toArray(function(err, t) {
-			async.map(t, function(e, done) {
-				new Msg(e._id, done, e);
-			}, callback);
-		});
-	}
+	db.collection(conf.database.msgsCollection).find({room : u.ObjectID(room_id)}).toArray(function(err, t) {
+				async.map(t, function(e, done) {
+					new Msg(e._id, done, e);
+				}, callback);
+			});
 }
 
 Msg.prototype.toString = function() {
@@ -85,8 +74,8 @@ Msg.prototype.remove = function() {
  * @param champ : name of the field to check
  */
 Msg.prototype.check = function(champ, callback) {
-	champ = champ || 'id';
-	var c = _.pick(this.obj(), champ);
+	champ = champ||'';
+	var c = _.omit(this.obj(), champ);
 	db.collection(conf.database.msgsCollection).find(c).count(function(err, count) {
 		callback(err, count==0);
 	});
