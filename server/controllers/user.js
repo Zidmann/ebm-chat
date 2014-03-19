@@ -8,7 +8,7 @@ var 	User  = require('../models/user.js'),
 function getUserInfos(req, res, next) {
 	new User(req.params.id, function(err, user) {
 		if (err) return next(err);
-	
+
 		if (user.loaded) {
 			res.json(200, _.omit(user.obj(true), 'pass', 'isAdmin', 'created', 'updated'));
 		}
