@@ -18,10 +18,10 @@ var register=function (app, ctrl, cas)
     app.delete("/api/rooms/:id",   ctrl.room.destroy);		        //Destroy a specific room
 
     //Messages APIs
-    app.get   ("/api/rooms/:room/msg",     ctrl.msg.getAll);		//Get information on a specific room
-    app.get   ("/api/rooms/:room/msg/:id", ctrl.msg.getOne);		//Get information on a specific room
-    app.post  ("/api/rooms/:room/msg",     ctrl.msg.post);		//Create a new room on the chat
-    app.delete("/api/rooms/:room/msg/:id", ctrl.msg.destroy);		//Destroy a specific room
+    app.get   ("/api/rooms/:room/msg",     ctrl.msg.getAll);		//Get all messages in a room
+    app.get   ("/api/rooms/:room/msg/:id", ctrl.msg.getOne);		//Get one specific message in a room
+    app.post  ("/api/rooms/:room/msg",     ctrl.msg.post);		//Publish a message on a room
+    app.delete("/api/rooms/:room/msg/:id", ctrl.msg.destroy);		//Destroy a specific message in a room
 
     //File APIs
     //Note : To get a file just go to /files/<filename>
