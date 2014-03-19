@@ -64,7 +64,8 @@ Room.prototype.obj = function(id) {
 
 Room.prototype.remove = function() {
 	var room = this;
-	db.collection(conf.database.roomCollection).remove({ _id : room.id }, {w : 0});
+	db.collection(conf.database.roomCollection).remove({ _id  : room.id }, {w : 0});
+	db.collection(conf.database.msgsCollection).remove({ room : room.id }, {w : 0});
 }
 
 /* check : checks the availability of the parameters in the db
