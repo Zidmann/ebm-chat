@@ -42,9 +42,9 @@ function createRoom(req, res, next) {
 	}	
 
 	room.libelle     = req.body.libelle;
-	room.owner       = req.body.owner;
+	room.owner       = u.ObjectID(req.body.owner);
 	room.description = req.body.description;
-	
+
 	room.check(null, function(err, b) {
 		if (err) return next(err);
 		if (b) {
@@ -54,7 +54,7 @@ function createRoom(req, res, next) {
 				room.check(null, function(err, b) {
 					if (err) return next(err);
 					if (b) return next(new Err(400, 1303, "Erreur lors de la création du salon"));
-					res.json(200, room.obj(true));//user.obj(true));
+					res.json(200, room.obj(true));
 				});
 			});
 		}
