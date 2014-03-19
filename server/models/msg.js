@@ -6,8 +6,8 @@ var u        = require('../utils/utils.js'),
     conf     = require('../conf.js');
 
 function Msg(id, callback, obj) {
-	id = (typeof id === 'string' && id.length == 24) ? u.ObjectID(id) : id;
-	
+	id   = (typeof id   === 'string' && id.length   == 24) ? u.ObjectID(id) : id;
+
 	this.id      = id;
 	this.room    = null;
 	this.txt     = null;
@@ -67,7 +67,7 @@ Msg.prototype.obj = function(id) {
 
 Msg.prototype.remove = function() {
 	var msg = this;
-	db.collection(conf.database.msgsCollection).remove({ _id : msg.id }, {w : 0});
+	db.collection(conf.database.msgsCollection).remove({ _id : msg.id, room : msg.room }, {w : 0});
 }
 
 /* check : checks the availability of the parameters in the db
