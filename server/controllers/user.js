@@ -10,7 +10,7 @@ function getUserInfos(req, res, next) {
 		if (err) return next(err);
 
 		if (user.loaded) {
-			res.json(200, _.omit(user.obj(true), 'pass', 'isAdmin', 'created', 'updated'));
+			res.json(200, _.omit(user.obj(true), 'pass', 'isAdmin', 'created', 'updated', 'loaded'));
 		}
 		else next(new Err(404, 1102, "L'utilisateur n'existe pas"));
 	});
