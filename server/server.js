@@ -76,7 +76,7 @@ function setup()
   app.use(express.cookieParser());
 
   // session support
-  app.use(express.session({secret: "J6kd8?YDéDB85éyèvip&"}));
+  app.use(express.session({secret: conf.secretSession}));
 
     // Setting up database connections pool
     app.use(function(req, res, next) {

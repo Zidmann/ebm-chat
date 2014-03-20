@@ -21,6 +21,8 @@ module.exports = {
         createUserUrl: 'http://www.monsite.fr/#/user/create'
     },
     mongo  : 'mongodb://localhost:27017/ebmChat',
+    secretToken   : "d2s42dggjfqlry6Jfs9shrgrxjthty",
+    secretSession : "J6kd8?YDéDB85éyèvip&",
     database :
     {
         name           : "ebmChat",
