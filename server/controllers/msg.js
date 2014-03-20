@@ -14,7 +14,11 @@ var 	Room  = require('../models/room.js'),
 function getMsgInfos(req, res, next) {
 	new Msg(req.params.id, function(err, msg) {
 		if (err) return next(err);
-	
+
+		if(msg.room!=req.params.room){
+			return next((new Err(404, 1102, "Le message n'est pas associé au bon salon")));
+		}
+
 		if (msg.loaded) {
 			res.json(200, msg);
 		}
@@ -78,6 +82,9 @@ function destroyMsg(req, res, next) {
 		if (err) return next(err);
 		if (req.params.id == null) {
 			return next(new Err(404, 1305, "Le message n'existe pas"));
+		}
+		if(target.room!=req.params.room){
+			return next((new Err(404, 1102, "Le message n'est pas associé au bon salon")));
 		}
 		target.remove();
 		res.send(200);
