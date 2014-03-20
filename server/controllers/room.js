@@ -14,7 +14,7 @@ function getRoomInfos(req, res, next) {
 		if (err) return next(err);
 	
 		if (room.loaded) {
-			res.json(200, room);
+			res.json(200, room.obj(true));
 		}
 		else next(new Err(404, 1102, "Le salon n'existe pas"));
 	});
