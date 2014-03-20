@@ -26,15 +26,6 @@ require('mongodb').MongoClient.connect(conf.mongo, function(err, myDb) {
 // var
 var server = null;
 
-// Load controller
-var ctrl = _.extend({},
-  require('./controllers/user.js'),
-  require('./controllers/login.js'),
-  require('./controllers/file.js'),
-  require('./controllers/room.js'),
-  require('./controllers/msg.js')
-);
-
 // Load cas
 cas.configure(conf.cas);
 
@@ -94,7 +85,7 @@ function setup()
     });
 
    // BEGIN APIs
-    require('./routes/routes.js').register(app,ctrl,cas);
+    require('./routes/routes.js').register(app, cas);
 
 
   // if no matching api

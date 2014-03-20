@@ -1,4 +1,14 @@
-var register=function (app, ctrl, cas)
+var _    = require('underscore');
+
+// Load controller
+var ctrl = _.extend({}, require('../controllers/user.js'),
+			require('../controllers/login.js'),
+			require('../controllers/file.js'),
+			require('../controllers/room.js'),
+			require('../controllers/msg.js'));
+
+
+var register=function (app, cas)
 {
 // START API DEFINITION
     //User APIs
@@ -8,7 +18,7 @@ var register=function (app, ctrl, cas)
     app.delete("/api/users/:id",   ctrl.user.destroy);		        //Get information on a specific user
 
     //Login APIs
-    app.post  ("/api/login/:door", ctrl.login.signin);		        //Connect to chat server website through a door (Classical, Gmail, Facebook, CAS, ...)
+    app.get  ("/api/login/:door", ctrl.login.signin);		        //Connect to chat server website through a door (Classical, Gmail, Facebook, CAS, ...)
     app.delete("/api/login",       ctrl.login.signout);                 //Disconnect from chat server website
 
     //Room APIs
