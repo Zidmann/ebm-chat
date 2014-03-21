@@ -25,9 +25,10 @@ module.exports = {
     secretSession : "J6kd8?YDéDB85éyèvip&",
     database :
     {
-        name           : "ebmChat",
-        userCollection : "users",
-        roomCollection : "rooms",
-        msgsCollection : "rooms.messages"
+        name            : "ebmChat",
+        userCollection  : "users",
+        tokenCollection : "users.token",
+        roomCollection  : "rooms",
+        msgsCollection  : "rooms.messages"
     }
 } 
