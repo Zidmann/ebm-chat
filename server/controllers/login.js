@@ -54,6 +54,25 @@ function signinClassic(req, res, next) {
 	});
 }
 
+//Sign up with classic method : user, password
+function signinRFID(req, res, next) {
+	if (req.body.cardCode == null) {
+		return next(new Err(400, 1002, "L'identifiant de la carte n'est pas communiqus"));
+	}
+	
+	var r = db.collection(conf.database.cardCollection).find({cardCode: req.body.cardCode}, {_id : 1});
+	r.count(function(err, count) {
+		if(err) return next(err);
+		
+		if(count != 1) return next(new Err(400, 1101, "L'individu n'est pas connu dans la base de données du chat"));
+		
+		r.nextObject(function(err, doc) {
+			if (err) return next(err);
+			generateToken(doc._id, res, next);
+		});
+	});
+}
+
 //Function to decrypt a token
 function readToken(req, res, next) {
     var decoded = jwt.decode(req.params.token, conf.secretToken);
@@ -70,7 +89,7 @@ function signin(req, res, next) {
 
 		//Use connection with RFID card
 		case "rfid":
-			return next(new Err(400, 1301, "La méthode d'accès n'est pas encore implémentée."));						
+			signinRFID(req, res, next);
 		break;
 
 		//Use connection with Google API
@@ -110,8 +129,28 @@ function signout(req, res, next) {
     }
 }
 
+function cas(req, res, next) {
+	if (req.session.cas_user == null) {
+		return next(new Err(400, 1002, "L'identifiant retourné par CAS EcLille est mal défini."));
+	}
+	
+	var r = db.collection(conf.database.userCollection).find({login: req.session.cas_user}, {_id : 1});
+	r.count(function(err, count) {
+		if(err) return next(err);
+		
+		if(count != 1) return next(new Err(400, 1101, "L'individu n'est pas connu dans la base de données du chat"));
+		
+		r.nextObject(function(err, doc) {
+			if (err) return next(err);
+			generateToken(doc._id, res, next);
+		});
+	});
+}
+
+
 module.exports.login = {
         signin          :       signin,
+	cas             :       cas,
         signout         :       signout,
 	readToken	:	readToken
 };

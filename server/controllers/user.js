@@ -34,18 +34,14 @@ function signup(req, res, next) {
 	{
 		return next(new Err(400, 1301, "Les paramètres envoyés ne sont pas complets"));
 	}	
-console.log("HELLO0");
 	user.login     = req.body.login;
-console.log("HELLO1");
 	user.setPassword(req.body.pass);
-console.log("HELLOC");
         user.avatar    = req.body.avatar;
 	user.civilite  = req.body.civilite;
 	user.firstName = req.body.firstName;
 	user.lastName  = req.body.lastName;
 	user.setMail    (req.body.mail);
 	user.setTel     (req.body.tel);
-console.log("HELLO2");
 	user.check(null, function(err, b) {
 		if (err) return next(err);
 		
